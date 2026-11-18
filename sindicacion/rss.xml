@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- LA PRIMERA LÍNEA DE ARRIBA tiene que ser siempre lo primero del archivo (ni un espacio antes).
+     Dice que esto es XML y que usa UTF-8 (para que se vean las tildes).
+
+     RSS 2.0: un feed es una lista de noticias que otros programas pueden leer.
+     Estructura:  rss > channel (la web) > item (cada noticia)
+
+     MODIFICA: cuando publiques la web, cambia https://tuusuario.github.io/
+     por tu dirección real en TODOS los sitios (Ctrl+H en VS Code).
+     En un feed las direcciones tienen que ser completas, no valen enlaces como #estudios solos. -->
+
+<rss version="2.0">
+  <channel>
+
+    <!-- Datos de la web (el "canal") -->
+    <title>Portfolio de Antonio Cuevas</title>
+    <link>https://tuusuario.github.io/</link>
+    <description>Novedades de mi portfolio personal: estudios, hobbies y lo que voy aprendiendo en 1.º de ASIR.</description>
+    <language>es-es</language>
+    <lastBuildDate>Fri, 06 Nov 2026 10:00:00 +0100</lastBuildDate>
+
+    <!-- ===== NOTICIA 1 (la más reciente va arriba) =====
+         Para añadir otra, copia desde la etiqueta item hasta su cierre y cambia los datos -->
+    <item>
+      <title>Ya está online mi portfolio</title>
+      <link>https://tuusuario.github.io/#inicio</link>
+      <description>Mi portfolio personal ya está publicado, con cabecera, barra lateral, secciones de estudios y hobbies, y dos estilos para elegir.</description>
+      <pubDate>Fri, 06 Nov 2026 10:00:00 +0100</pubDate>
+      <guid>https://tuusuario.github.io/#inicio</guid>
+    </item>
+
+    <!-- ===== NOTICIA 2 ===== -->
+    <item>
+      <title>Nueva sección: Estudios</title>
+      <link>https://tuusuario.github.io/#estudios</link>
+      <description>Cuento mi recorrido educativo: ESO, Bachillerato Tecnológico y 1.º de ASIR.</description>
+      <pubDate>Thu, 05 Nov 2026 10:00:00 +0100</pubDate>
+      <guid>https://tuusuario.github.io/#estudios</guid>
+    </item>
+
+    <!-- ===== NOTICIA 3 ===== -->
+    <item>
+      <title>Nueva sección: Hobbies</title>
+      <link>https://tuusuario.github.io/#hobbies</link>
+      <description>Lo que hago en mi tiempo libre: videojuegos, música y deporte.</description>
+      <pubDate>Wed, 04 Nov 2026 10:00:00 +0100</pubDate>
+      <guid>https://tuusuario.github.io/#hobbies</guid>
+    </item>
+
+  </channel>
+</rss>

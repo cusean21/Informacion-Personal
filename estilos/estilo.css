@@ -1,0 +1,592 @@
+/* =====================================================
+   1. COLORES Y AJUSTES GENERALES
+   Los colores se definen UNA vez aquí arriba.
+   Si cambias uno, cambia en toda la web.
+   ===================================================== */
+:root {
+  --fondo: #1a1a2e;        /* fondo de la página (casi negro) */
+  --superficie: #25254a;   /* fondo de ventanas y pie (un poco más claro) */
+  --texto: #e9e7e2;        /* color del texto normal */
+  --apagado: #8f8c84;      /* texto secundario (gris) */
+  --oro: #ff4f58;          /* dorado principal */
+  --oro-claro: #e6c878;    /* dorado más claro (al pasar el ratón) */
+  --borde: #2a2a30;        /* líneas finas grises */
+}
+
+/* El * significa "todos los elementos". Quitamos los márgenes que
+   trae el navegador por defecto para controlarlos nosotros */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;   /* al pulsar el menú, baja suavemente */
+  scroll-padding-top: 70px;  /* deja hueco para que el menú no tape el título */
+}
+
+body {
+  background-color: var(--fondo);
+  color: var(--texto);
+  font-family: "Manrope", Arial, sans-serif;  /* si falla la 1.ª, usa Arial */
+  font-size: 1.05rem;
+  line-height: 1.7;                           /* espacio entre líneas */
+}
+
+/* Todos los títulos usan la letra elegante */
+h1, h2, h3 {
+  font-family: "Playfair Display", Georgia, serif;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+a {
+  color: inherit;            /* los enlaces cogen el color del texto */
+  text-decoration: none;     /* quita el subrayado */
+}
+
+ul {
+  list-style: none;          /* quita los puntitos de las listas */
+}
+
+/* =====================================================
+   2. MENÚ SUPERIOR
+   ===================================================== */
+.cabecera {
+  position: sticky;          /* se queda pegado arriba al hacer scroll */
+  top: 0;
+  z-index: 10;               /* lo pone por encima del resto */
+  display: flex;
+  justify-content: space-between;  /* logo a la izquierda, menú a la derecha */
+  align-items: center;
+  padding: 18px 6%;
+  background-color: rgba(13, 13, 15, 0.85);  /* negro semitransparente */
+  backdrop-filter: blur(10px);               /* desenfoca lo que pasa por detrás */
+  border-bottom: 1px solid var(--borde);
+}
+
+.logo {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--oro);
+}
+
+.menu {
+  display: flex;             /* enlaces en fila */
+  gap: 60px;                 /* separación entre ellos */
+}
+
+.menu a {
+  color: var(--apagado);
+  font-size: 1.1rem;
+  padding-bottom: 4px;
+  border-bottom: 1px solid transparent;      /* línea invisible... */
+  transition: color 0.25s, border-color 0.25s;
+}
+
+.menu a:hover {
+  color: var(--oro-claro);
+  border-bottom-color: var(--oro);           /* ...que se vuelve dorada al pasar el ratón */
+}
+
+/* =====================================================
+   3. INICIO (texto + foto)
+   ===================================================== */
+.inicio {
+  max-width: 1100px;
+  margin: 0 auto;            /* auto a los lados = centrado */
+  padding: 110px 6% 90px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 60px;
+}
+
+.inicio-texto {
+  max-width: 560px;
+}
+
+.inicio h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.inicio p {
+  color: var(--apagado);
+  margin-bottom: 20px;
+}
+
+.inicio-foto {
+  width: 360px;
+  height: 360px;
+  object-fit: cover;         /* recorta la foto sin deformarla */
+  border-radius: 50%;
+  border: 3px solid var(--oro);
+}
+
+/* ----- Botón ----- */
+.boton {
+  display: inline-block;
+  padding: 14px 32px;
+  border: 1px solid var(--oro);
+  border-radius: 999px;      /* número enorme = bordes totalmente redondos */
+  color: var(--oro);
+  font-weight: 600;
+  transition: background-color 0.25s, color 0.25s;
+}
+
+.boton:hover {
+  background-color: var(--oro);
+  color: var(--fondo);
+}
+
+/* =====================================================
+   4. SECCIONES (Estudios y Hobbies)
+   ===================================================== */
+.seccion {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 80px 6%;
+}
+
+.seccion h2 {
+  font-size: 2.2rem;
+  margin-bottom: 12px;
+}
+
+/* Rayita dorada debajo de cada título de sección */
+.seccion h2::after {
+  content: "";
+  display: block;
+  width: 50px;
+  height: 2px;
+  background-color: var(--oro);
+  margin-top: 14px;
+}
+
+.intro {
+  color: var(--apagado);
+  margin: 18px 0 45px;
+}
+
+/* =====================================================
+   5. VENTANAS DE ESTUDIOS
+   ===================================================== */
+.ventanas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* tantas columnas como quepan */
+  gap: 28px;
+}
+
+.ventana {
+  background-color: var(--superficie);
+  border: 1px solid var(--borde);
+  border-radius: 12px;
+  overflow: hidden;          /* que la barra no se salga de las esquinas redondas */
+  transition: transform 0.4s, border-color 0.3s;
+}
+
+.ventana:hover {
+  transform: translateY(-12px);       /* sube un poco */
+  border-color: var(--oro);          /* el borde se pone dorado */
+}
+
+/* Barra superior con los 3 circulitos */
+.ventana-barra {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--borde);
+}
+
+.punto {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;        /* 50% = círculo */
+  background-color: var(--borde);
+}
+
+/* El primer circulito en dorado (detalle premium) */
+.punto:first-child {
+  background-color: var(--oro);
+}
+
+.ventana-titulo {
+  margin-left: 10px;
+  font-family: "Courier New", monospace;   /* letra tipo código */
+  font-size: 0.8rem;
+  color: var(--apagado);
+}
+
+.ventana-cuerpo {
+  padding: 26px 24px 30px;
+}
+
+.ventana-cuerpo h3 {
+  font-size: 1.4rem;
+  margin-bottom: 4px;
+}
+
+.fecha {
+  color: var(--oro);
+  font-size: 0.9rem;
+  margin-bottom: 14px;
+}
+
+.ventana-cuerpo p:last-child {
+  color: var(--apagado);
+}
+
+/* =====================================================
+   6. HOBBIES
+   ===================================================== */
+.hobbies {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 40px;
+}
+
+.hobby {
+  border-left: 2px solid var(--oro);   /* línea dorada a la izquierda */
+  padding-left: 22px;
+}
+
+.hobby h3 {
+  font-size: 1.3rem;
+  margin-bottom: 8px;
+}
+
+.hobby p {
+  color: var(--apagado);
+}
+
+/* =====================================================
+   7. PIE DE PÁGINA (contacto y licencia)
+   ===================================================== */
+.pie {
+  margin-top: 80px;
+  padding: 70px 6% 40px;
+  background-color: var(--superficie);
+  border-top: 1px solid var(--oro);
+}
+
+.pie-contenido {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  gap: 50px;
+  flex-wrap: wrap;            /* si no caben, bajan a otra línea */
+}
+
+.pie h2 {
+  font-size: 1.4rem;
+  margin-bottom: 18px;
+  color: var(--oro);
+}
+
+.pie-lista li {
+  margin-bottom: 8px;
+}
+
+.pie-lista a {
+  color: var(--texto);
+  transition: color 0.25s;
+}
+
+.pie-lista a:hover {
+  color: var(--oro-claro);
+}
+
+.pie p {
+  color: var(--apagado);
+  font-size: 0.95rem;
+  margin-bottom: 8px;
+}
+
+.subir {
+  display: block;
+  width: fit-content;         /* el enlace ocupa solo lo que mide su texto */
+  margin: 50px auto 0;
+  color: var(--apagado);
+  font-size: 0.9rem;
+  transition: color 0.25s;
+}
+
+.subir:hover {
+  color: var(--oro-claro);
+}
+
+/* =====================================================
+   8. ANIMACIÓN DE ENTRADA (solo al cargar la página)
+   Es la única animación automática: el texto y la foto
+   aparecen subiendo un poquito.
+   ===================================================== */
+@keyframes aparecer {
+  from {
+    opacity: 0;                       /* empieza invisible... */
+    transform: translateY(80px);      /* ...20px más abajo */
+  }
+  to {
+    opacity: 1;                       /* termina visible... */
+    transform: translateY(0);         /* ...en su sitio */
+  }
+}
+
+.inicio-texto,
+.inicio-foto {
+  animation: aparecer 0.9s ease-out;
+}
+
+.inicio-foto {
+  animation-delay: 0.2s;              /* la foto entra un poco después */
+  animation-fill-mode: backwards;     /* mientras espera, se ve invisible */
+}
+
+/* Si el usuario tiene desactivadas las animaciones en su sistema, las quitamos */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* =====================================================
+   9. MÓVIL (pantallas de menos de 800px)
+   Lo de dentro solo se aplica en pantallas pequeñas
+   ===================================================== */
+@media (max-width: 800px) {
+  .cabecera {
+    flex-direction: column;   /* logo encima, menú debajo */
+    gap: 12px;
+  }
+
+  .menu {
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .inicio {
+    flex-direction: column-reverse;   /* la foto pasa arriba */
+    text-align: center;
+    padding-top: 60px;
+  }
+
+  .inicio h1 {
+    font-size: 2.4rem;
+  }
+
+  .inicio-foto {
+    width: 220px;
+    height: 260px;
+  }
+}
+
+/* =====================================================
+   10. BARRA LATERAL DE CONTENIDO
+   ===================================================== */
+.barra-lateral {
+  display: grid;
+  align-content: start;
+  gap: 16px;
+  padding: 20px 6%;
+  background-color: var(--superficie);
+  border-bottom: 1px solid var(--borde);
+}
+
+.barra-lateral h2 {
+  color: var(--oro);
+  font-size: 1.45rem;
+}
+
+.barra-lateral summary {
+  font: 600 1rem/1.5 "Manrope", Arial, sans-serif;
+  cursor: pointer;
+}
+
+.barra-lateral > details {
+  min-width: 0;
+  border-top: 1px solid var(--borde);
+  padding-top: 12px;
+}
+
+.barra-lateral details[open] > summary {
+  margin-bottom: 8px;
+}
+
+.conceptos-web {
+  font-size: 0.95rem;
+}
+
+.conceptos-web dt {
+  margin-top: 12px;
+  font-weight: 600;
+}
+
+.conceptos-web code {
+  display: block;
+  margin-top: 6px;
+  padding: 6px 8px;
+  background: var(--fondo);
+  overflow-wrap: anywhere;
+}
+
+.barra-lateral a {
+  display: inline-block;
+  padding-block: 3px;
+  color: var(--texto);
+  font-size: 0.95rem;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.barra-lateral a:hover,
+.barra-lateral a:focus-visible,
+.barra-lateral summary:hover,
+.barra-lateral summary:focus-visible {
+  color: var(--oro);
+}
+
+.enlaces-feeds {
+  display: flex;
+  gap: 16px;
+}
+
+.ajustes svg {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+@media (min-width: 801px) {
+  body {
+    --ancho-lateral: clamp(216px, 22vw, 288px);
+    padding-right: var(--ancho-lateral);
+  }
+
+  .barra-lateral {
+    position: fixed;
+    inset: 0 0 0 auto;
+    width: var(--ancho-lateral);
+    padding: 24px 18px;
+    overflow-y: auto;
+    border-left: 1px solid var(--borde);
+    border-bottom: 0;
+  }
+}
+
+/* =====================================================
+   11. DATOS DE "SOBRE MÍ"  -- NUEVO
+   Las listas dentro de las ventanas de la sección Sobre mí
+   ===================================================== */
+.datos li {
+  color: var(--apagado);      /* el valor, en gris */
+  margin-bottom: 10px;
+}
+
+.datos strong {
+  color: var(--texto);        /* la etiqueta (Edad:, Curso:...) en color normal */
+}
+
+/* =====================================================
+   12. ARRIBA A LA IZQUIERDA: modo claro/oscuro, idioma y nombre  -- NUEVO
+   ===================================================== */
+.cabecera {
+  flex-wrap: wrap;            /* si no caben, el menú baja a otra línea en vez de salirse */
+}
+
+.cabecera-izq {
+  display: flex;              /* botones y nombre, en fila */
+  align-items: center;
+  gap: 22px;
+}
+
+.cabecera nav {
+  margin-left: auto;          /* empuja el menú a la derecha, esté en la misma línea o en la de abajo */
+}
+
+.ajustes {
+  display: flex;
+  gap: 8px;
+}
+
+/* Los dos botones redondos (tema e idioma) */
+.ajustes button {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: inherit;       /* los botones no heredan la letra solos; así sí */
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--apagado);
+  background-color: transparent;
+  border: 1px solid var(--borde);
+  border-radius: 50%;
+  cursor: pointer;            /* sale la manita */
+  transition: color 0.25s, border-color 0.25s;
+}
+
+.ajustes button:hover {
+  color: var(--oro);
+  border-color: var(--oro);
+}
+
+/* Con tantos elementos arriba, en pantallas medianas el menú se junta un poco.
+   (Solo entre 801px y 1500px, para no tocar tu versión de móvil ni la de pantalla grande) */
+@media (min-width: 801px) and (max-width: 1500px) {
+  .cabecera {
+    row-gap: 10px;
+  }
+
+  .menu {
+    gap: 32px;
+  }
+}
+
+/* En móvil: los botones y el nombre, centrados */
+@media (max-width: 800px) {
+  .cabecera-izq {
+    justify-content: center;
+  }
+
+  .cabecera nav {
+    margin-left: 0;
+  }
+}
+
+/* =====================================================
+   13. VÍDEOS: desplegable de la barra lateral
+   ===================================================== */
+.lista-videos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+  gap: 14px;
+}
+
+.video video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;                /* proporción de pantalla de cine, sin deformarse */
+  background-color: #000;              /* fondo negro mientras carga */
+  border: 1px solid var(--borde);
+  border-radius: 10px;
+}
+
+.video figcaption {
+  color: var(--apagado);
+  font-size: 0.9rem;
+  margin-top: 8px;
+}

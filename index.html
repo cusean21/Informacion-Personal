@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<!-- =====================================================
+     HEAD: información que NO se ve en la página
+     ===================================================== -->
+<head>
+  <meta charset="UTF-8"> <!-- para que se vean las tildes y la ñ -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- para que se adapte al móvil -->
+
+  <!-- MODIFICA: pon tu nombre. Es el texto de la pestaña del navegador -->
+  <title>Antonio Cuevas | Información Personal</title>
+
+  <!-- Tipos de letra de Google Fonts (necesita internet; sin conexión se usan letras normales) -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600&family=Playfair+Display:wght@500;700&display=swap">
+
+  <!-- Conecta este HTML con el archivo de diseño.
+       id="tema" para que el botón de modo claro/oscuro pueda cambiar este archivo
+       entre estilo.css (oscuro) y estilo-claro.css (claro) -->
+  <link id="tema" rel="stylesheet" href="estilos/estilo.css">
+
+  <!-- Avisan al navegador de que la web tiene feeds RSS y Atom (los archivos rss.xml y atom.xml) -->
+  <link rel="alternate" type="application/rss+xml" title="RSS de Antonio Cuevas" href="sindicacion/rss.xml">
+  <link rel="alternate" type="application/atom+xml" title="Atom de Antonio Cuevas" href="sindicacion/atom.xml">
+</head>
+
+<!-- =====================================================
+     BODY: todo lo que SÍ se ve
+
+     CÓMO FUNCIONA EL CAMBIO DE IDIOMA (data-en):
+     Todo el texto está escrito en español, como siempre.
+     A los elementos que se traducen les he añadido un atributo data-en
+     con el mismo texto en inglés. Ejemplo:
+         <p data-en="Hello">Hola</p>
+     Cuando se pulsa el botón EN, el JavaScript del final cambia el
+     texto por el de data-en. Al pulsar ES, vuelve al español.
+     ===================================================== -->
+<body>
+
+  <!-- ===================== MENÚ SUPERIOR ===================== -->
+  <header class="cabecera">
+
+    <!-- NUEVO: grupo de la IZQUIERDA = botones de modo claro/oscuro e idioma + tu nombre -->
+    <div class="cabecera-izq">
+
+      <div class="ajustes">
+        <!-- Botón modo claro/oscuro. El dibujo es un SVG (un círculo medio relleno).
+             title = texto que sale al pasar el ratón; aria-label = lo que leen los lectores de pantalla -->
+        <button id="boton-tema" type="button" title="Cambiar a modo claro" aria-label="Cambiar a modo claro">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M12 3v18a9 9 0 0 0 0-18z" fill="currentColor"/>
+          </svg>
+        </button>
+
+        <!-- Botón de idioma: muestra el idioma AL QUE vas a cambiar -->
+        <button id="boton-idioma" type="button" title="Cambiar a inglés" aria-label="Cambiar a inglés">EN</button>
+      </div>
+
+      <!-- MODIFICA: tu nombre o tus iniciales -->
+      <a class="logo" href="#inicio">Antonio Cuevas</a>
+    </div>
+
+    <nav>
+      <ul class="menu">
+        <!-- Cada enlace lleva a la sección cuyo id coincide con su href.
+             Ejemplo: href="#estudios" lleva a <section id="estudios"> -->
+        <li><a href="#inicio" data-en="Home">Inicio</a></li>
+        <li><a href="#sobre-mi" data-en="About me">Sobre mí</a></li>
+        <li><a href="#estudios" data-en="Studies">Estudios</a></li>
+        <li><a href="#hobbies" data-en="Hobbies">Hobbies</a></li>
+        <li><a href="#contacto" data-en="Contact">Contacto</a></li>
+        <!-- PARA AÑADIR UN ENLACE: copia una línea <li> y cambia href y texto -->
+      </ul>
+    </nav>
+  </header>
+
+  <aside class="barra-lateral" aria-labelledby="titulo-contenido">
+    <h2 id="titulo-contenido" data-en="Content">Contenido</h2>
+
+    <details id="videos">
+      <summary data-en="Videos">Vídeos</summary>
+      <div class="lista-videos">
+        <figure class="video">
+          <video controls playsinline preload="metadata" poster="videos/videoccs-portada.jpg">
+            <source src="videos/videoccs.mp4" type="video/mp4">
+            Tu navegador no admite vídeo.
+          </video>
+          <figcaption data-en="CSS video">Vídeo de CSS</figcaption>
+        </figure>
+        <figure class="video">
+          <video controls playsinline preload="metadata" poster="videos/html-portada.jpg">
+            <source src="videos/html.mp4" type="video/mp4">
+            Tu navegador no admite vídeo.
+          </video>
+          <figcaption data-en="HTML video">Vídeo de HTML</figcaption>
+        </figure>
+      </div>
+    </details>
+
+    <details>
+      <summary>Instagram</summary>
+      <a href="https://www.instagram.com/antoniiocuevas21/" target="_blank" rel="noopener">@antoniiocuevas21</a>
+    </details>
+
+    <details>
+      <summary data-en="How this website works">Cómo funciona esta web</summary>
+      <dl class="conceptos-web">
+        <dt data-en="What is HTML?">¿Qué es HTML?</dt>
+        <dd>
+          <p data-en="HTML gives a page its structure. Tags mark headings, paragraphs, links and videos. This line creates the main heading you see on the home page.">HTML da estructura a una página. Sus etiquetas indican qué es un título, un párrafo, un enlace o un vídeo. Esta línea crea el título que ves en el inicio.</p>
+          <code>&lt;h1&gt;Hola, soy Antonio Cuevas&lt;/h1&gt;</code>
+        </dd>
+        <dt data-en="What does CSS do?">¿Para qué sirve CSS?</dt>
+        <dd data-en="CSS defines how HTML elements look. On this site, estilo.css sets the layout and dark theme. The light theme imports that file and changes colours and shadows.">CSS define el aspecto de los elementos HTML. En esta web, estilo.css organiza la página y define el tema oscuro. El tema claro importa ese archivo y cambia los colores y las sombras.</dd>
+        <dt data-en="What does JavaScript do?">¿Qué hace JavaScript?</dt>
+        <dd data-en="JavaScript lets the page respond to actions. When you press the theme button, it changes which CSS file your browser uses.">JavaScript permite que la página responda a tus acciones. Cuando pulsas el botón de tema, cambia el archivo CSS que usa tu navegador.</dd>
+      </dl>
+    </details>
+
+    <details>
+      <summary data-en="My CSS files">Mis archivos CSS</summary>
+      <ul>
+        <li><a href="estilos/estilo.css" target="_blank" rel="noopener">estilo.css</a></li>
+        <li><a href="estilos/estilo-claro.css" target="_blank" rel="noopener">estilo-claro.css</a></li>
+      </ul>
+    </details>
+
+    <details>
+      <summary data-en="Web links">Enlaces de interés</summary>
+      <ul>
+        <li><a href="https://developer.mozilla.org/es/docs/Web/HTML" target="_blank" rel="noopener" data-en="HTML on MDN">HTML en MDN</a></li>
+        <li><a href="https://developer.mozilla.org/es/docs/Web/CSS" target="_blank" rel="noopener" data-en="CSS on MDN">CSS en MDN</a></li>
+      </ul>
+    </details>
+
+    <details>
+      <summary data-en="Feeds">Suscripciones</summary>
+      <ul class="enlaces-feeds">
+        <li><a href="sindicacion/rss.xml">RSS</a></li>
+        <li><a href="sindicacion/atom.xml">Atom</a></li>
+      </ul>
+    </details>
+  </aside>
+
+  <main>
+
+    <!-- ===================== SECCIÓN 1: INICIO ===================== -->
+    <!-- id="inicio" es el "nombre" de esta sección; el menú apunta a él -->
+    <section id="inicio" class="inicio">
+
+      <div class="inicio-texto">
+        <!-- MODIFICA: título y texto de presentación -->
+        <h1 data-en="Hi, I'm Antonio Cuevas">Hola, soy Antonio Cuevas</h1>
+        <p data-en="I'm a first-year ASIR student at IES Medina Azahara in Córdoba. I'm 18 years old and I'm an Atlético de Madrid fan. I'd like to work in something related to IT, since it's really interesting and it makes me incredibly curious.">Soy estudiante de 1ºAsir en el Ies Medina Azahara en Córdoba.Tengo 18 años y soy del Atletico de madrid.Me gustaria trabajar en algo relacionado con la informática ya que es algo muy intersante y que me genera muchisima curiosidad</p>
+
+        <!-- Botón que baja hasta la sección de estudios -->
+        <a class="boton" href="#estudios" data-en="Get to know me">Conoce quien soy</a>
+      </div>
+
+      <!-- IMAGEN: src = nombre del archivo (tiene que estar en la misma carpeta)
+                    alt = descripción por si la imagen no carga.
+           MODIFICA: pon tu foto en la carpeta y cambia foto.svg por foto.jpg (o el nombre que tenga) -->
+      <img class="inicio-foto" src="imagenes/foto1.jpg" alt="Foto de perfil de Antonio Cuevas">
+    </section>
+
+
+    <!-- ===================== SECCIÓN SOBRE MÍ (datos personales) =====================
+         Usa las mismas "ventanas" que Estudios, así que el diseño es igual.
+         id="sobre-mi" es el nombre al que apuntan el menú de arriba y el de la derecha. -->
+    <section id="sobre-mi" class="seccion">
+      <h2 data-en="About me">Sobre mí</h2>
+      <p class="intro" data-en="Some details to get to know me better.">Algunos datos para conocerme mejor.</p>
+
+      <div class="ventanas">
+
+        <!-- VENTANA 1: Datos personales -->
+        <article class="ventana">
+          <div class="ventana-barra">
+            <span class="punto"></span>
+            <span class="punto"></span>
+            <span class="punto"></span>
+            <span class="ventana-titulo">Datos</span>
+          </div>
+          <div class="ventana-cuerpo">
+            <h3 data-en="Personal details">Datos personales</h3>
+            <!-- ul = lista, li = cada punto. <strong> pone el texto en negrita.
+                 <span> es una caja "sin forma" que sirve para marcar un trozo de texto -->
+            <ul class="datos">
+              <li><strong data-en="Name:">Nombre:</strong> Antonio Cuevas</li>
+              <li><strong data-en="Age:">Edad:</strong> <span data-en="18 years old">18 años</span></li>
+              <li><strong data-en="School:">Centro:</strong> IES Medina Azahara, Córdoba</li>
+              <li><strong data-en="Course:">Curso:</strong> <span data-en="1st year of ASIR">1.º de ASIR</span></li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- VENTANA 2: Que me gusta -->
+        <article class="ventana">
+          <div class="ventana-barra">
+            <span class="punto"></span>
+            <span class="punto"></span>
+            <span class="punto"></span>
+            <span class="ventana-titulo">Mis Gustos</span>
+          </div>
+          <div class="ventana-cuerpo">
+            <h3 data-en="What defines me">Lo que me define</h3>
+            <ul class="datos">
+              <li><strong data-en="Team:">Equipo:</strong> Atlético de Madrid</li>
+              <li><strong data-en="Video games:">Videojuegos:</strong> <span data-en="FIFA and Valorant">FIFA y Valorant</span></li>
+              <li><strong data-en="Sport:">Deporte:</strong> <span data-en="gym, padel, football and tennis">gimnasio, pádel, fútbol y tenis</span></li>
+              <li><strong data-en="Goal:">Objetivo:</strong> <span data-en="to work in something related to IT">trabajar en algo relacionado con la informática</span></li>
+            </ul>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+
+    <!-- ===================== SECCIÓN 2: ESTUDIOS (ventanas) ===================== -->
+    <section id="estudios" class="seccion">
+      <h2 data-en="Studies">Estudios</h2>
+      <p class="intro" data-en="My educational journey.">Mi recorrido educativo.</p>
+
+      <!-- Contenedor de todas las ventanas -->
+      <div class="ventanas">
+        <!--==== VENTANA 0 ====-->
+        <article class="ventana">
+         <div class="ventana-barra">
+          <span class="punto"></span>
+          <span class="punto"></span>
+          <span class="punto"></span>
+          <span class="ventana-titulo">ESO</span>
+         </div>
+         <div class="ventana-cuerpo">
+          <h3 data-en="ESO (compulsory secondary education)">ESO</h3>
+          <p class="fecha">2020-2024</p>
+          <p data-en="In 2020, after the COVID-19 lockdown, I started my secondary education, a stage I will never forget and I wish I could go back to.">En 2020 despues de la cuarentena del Covid-19, inicie mi etapa en la educacion segundaria, una etapa que nunca voy a olvidar y ojala poder volver.</p>
+         </div>
+        </article>
+
+        <!-- ===== VENTANA 1 =====
+             Esta es la plantilla. Para añadir otra etapa, copia
+             desde <article> hasta </article> y cambia el texto -->
+        <article class="ventana">
+
+          <!-- Barra superior de la ventana: 3 circulitos + título -->
+          <div class="ventana-barra">
+            <span class="punto"></span>
+            <span class="punto"></span>
+            <span class="punto"></span>
+            <!-- MODIFICA: nombre del "archivo" que sale en la barra -->
+            <span class="ventana-titulo">Bachillerato</span>
+          </div>
+
+          <!-- Contenido de la ventana -->
+          <div class="ventana-cuerpo">
+            <!-- MODIFICA: tu etapa, años y descripción -->
+            <h3 data-en="Bachillerato (upper secondary)">Bachillerato</h3>
+            <p class="fecha">2024 - 2026</p>
+            <p data-en="I enrolled in the Technology Bachillerato at IES Villarrubia. It was a really nice experience because, even though you have to study a lot, it's a stage I would never recommend skipping.">Me matricule de Bachillerato Técnologico en el Ies Villarrubia, fue una experiencia muy bonita porque aunque haya que estudira mucho es un epoca que nunca recomendaria saltar.</p>
+          </div>
+        </article>
+
+        <!-- ===== VENTANA 2 ===== -->
+        <article class="ventana">
+          <div class="ventana-barra">
+            <span class="punto"></span>
+            <span class="punto"></span>
+            <span class="punto"></span>
+            <span class="ventana-titulo">1ºAsir</span>
+          </div>
+          <div class="ventana-cuerpo">
+            <h3 data-en="1st year of ASIR">1.º de ASIR</h3>
+            <p class="fecha" data-en="2026 - Present">2026 - Actualidad</p>
+            <p data-en="After finishing Bachillerato with an average grade of 7.18, I decided to go into a degree related to IT, and this was the one I liked the most. I decided to give it a try and see if I really liked it.">Despues de Matricularme de Bachillerato con una media de 7'18 decidi meterme en un grado relacionado con la informática y este fue el que mas me había gustado y decidi intertarlo y probar si era verdad que me gustaba.</p>
+          </div>
+        </article>
+
+        <!-- ===== VENTANA 3 ===== -->
+        <article class="ventana">
+          <div class="ventana-barra">
+            <span class="punto"></span>
+            <span class="punto"></span>
+            <span class="punto"></span>
+            <span class="ventana-titulo">2ºAsir</span>
+          </div>
+          <div class="ventana-cuerpo">
+            <h3 data-en="2nd year of ASIR">2.º de ASIR</h3>
+            <p class="fecha" data-en="Next year">Proximo Año</p>
+            <p data-en="After passing first year of ASIR this year, I will move on to second year, hoping to do work placements and gain knowledge related to IT.">Despues de sacarme este año el curso de primer año de asir, me metere en el segundo con la esperanza de poder realizar practicas y adquirir conocimientos relacionados con la informática.</p>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+
+    <!-- ===================== SECCIÓN 3: HOBBIES ===================== -->
+    <section id="hobbies" class="seccion">
+      <h2 data-en="My Hobbies">Mis Hobbies</h2>
+      <p class="intro" data-en="What I do in my free time.">Lo que hago en mi tiempo libre.</p>
+
+      <div class="hobbies">
+
+        <!-- Cada hobby es una tarjeta. Copia un <article> para añadir otro -->
+        <article class="hobby">
+          <!-- MODIFICA: título y descripción de cada afición -->
+          <h3 data-en="Video games">Videojuegos</h3>
+          <p data-en="I like playing games such as FIFA, Valorant and many other similar ones, but above all playing them with friends.">Me gusta jugar juegos como el Fifa, el Valorant otros muchos relacionados, pero sobre todo jugarlos con amigos.</p>
+        </article>
+
+        <article class="hobby">
+          <h3 data-en="Music">Música</h3>
+          <p data-en="Music is something I engage with a lot too, especially when I go to the gym. It helps me clear my head.">La musica es algo con la que tambien interactuo mucho sobre todo cuando voy al gimnasio es algo que me despeja.</p>
+        </article>
+
+        <article class="hobby">
+          <h3 data-en="Sport">Deporte</h3>
+          <p data-en="I enjoy playing lots of sports, like padel, the odd football kickabout and even tennis. I don't play them very often, but I always feel like playing them. The one I do most regularly is going to the gym, which is very important because it helps me clear my head.">Me gusta realizar muchos deportes como jugar al padel, alguna pachanga del futbol e incluso el tenis, son deportes que no hago muy a menudo pero que siempre tengo ganas de jugarlos. EL que mas llevo al dia es el gimnasio que es muy importante porque me ayuda a despejarme.</p>
+        </article>
+
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ===================== PIE DE PÁGINA: contacto y licencia ===================== -->
+  <footer id="contacto" class="pie">
+
+    <div class="pie-contenido">
+
+      <div>
+        <h2 data-en="Contact">Contacto</h2>
+        <ul class="pie-lista">
+          <!-- mailto: abre el programa de correo del usuario -->
+          <!-- MODIFICA: tu correo real -->
+          <li><a href="mailto:antoniocuevasseco@gmail.com">antoniocuevasseco@gmail.com</a></li>
+          <li><a href="mailto:azardanielaantonio@gmail.com">azardanielaantonio@gmail.com</a></li>
+          <!-- target="_blank" hace que el enlace se abra en una pestaña nueva -->
+          <!-- MODIFICA: tus enlaces reales (GitHub, LinkedIn...) -->
+          <li><a href="https://www.instagram.com/antoniiocuevas21/" target="_blank">@antoniiocuevas21</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 data-en="License">Licencia</h2>
+        <!-- MODIFICA: pon tu nombre. &copy; es el símbolo © -->
+        <p data-en="&copy; 2026 Antonio Cuevas. All rights reserved.">&copy; 2026 Antonio Cuevas.Derechos reservador de antonio</p>
+        <p data-en="Page created for the Markup Languages assignment, made solely by Antonio Cuevas.">Pagina creada para Trabajo de Lenguaje de Marcas realizado unicamente por Antonio Cuevas</p>
+      </div>
+
+    </div>
+
+    <!-- Enlace que sube al principio de la página -->
+    <a class="subir" href="#inicio" data-en="Back to top">Volver arriba</a>
+  </footer>
+
+
+  <!-- =====================================================
+       JAVASCRIPT: modo claro/oscuro y cambio de idioma
+       Es lo único que hace JavaScript en toda la web.
+       Se lee de arriba abajo: primero preparamos cosas
+       y después definimos qué pasa al pulsar cada botón.
+       ===================================================== -->
+  <script>
+    // ----- 1. Buscamos los elementos que vamos a usar (por su id) -----
+    var enlaceCSS = document.getElementById("tema");             // el <link> del CSS
+    var botonTema = document.getElementById("boton-tema");       // botón modo claro/oscuro
+    var botonIdioma = document.getElementById("boton-idioma");   // botón ES/EN
+
+    var panelVideos = document.getElementById("videos");
+    panelVideos.addEventListener("toggle", function () {
+      if (!panelVideos.open) {
+        panelVideos.querySelectorAll("video").forEach(function (video) {
+          video.pause();
+        });
+      }
+    });
+
+    // ----- 2. Variables que recuerdan cómo está la página ahora mismo -----
+    // true = sí, false = no
+    var modoClaro = false;                    // al empezar: modo oscuro
+    var enIngles = false;                     // al empezar: español
+    var tituloEspanol = document.title;       // guardamos el título original de la pestaña
+
+    // ----- 3. Textos de los botones en cada idioma -----
+    var textos = {
+      es: { aClaro: "Cambiar a modo claro", aOscuro: "Cambiar a modo oscuro", aIdioma: "Cambiar a inglés", letras: "EN" },
+      en: { aClaro: "Switch to light mode", aOscuro: "Switch to dark mode", aIdioma: "Switch to Spanish", letras: "ES" }
+    };
+
+    // ----- 4. Al pulsar el botón de modo claro/oscuro -----
+    botonTema.addEventListener("click", function () {
+      if (modoClaro === false) {
+        // Estaba oscuro: cargamos el CSS claro
+        modoClaro = true;
+        enlaceCSS.setAttribute("href", "estilos/estilo-claro.css");
+      } else {
+        // Estaba claro: volvemos al CSS oscuro
+        modoClaro = false;
+        enlaceCSS.setAttribute("href", "estilos/estilo.css");
+      }
+      actualizarBotones();
+    });
+
+    // ----- 5. Al pulsar el botón de idioma -----
+    botonIdioma.addEventListener("click", function () {
+      if (enIngles === false) {
+        enIngles = true;
+      } else {
+        enIngles = false;
+      }
+      traducirPagina();
+      actualizarBotones();
+    });
+
+    // ----- 6. Función que traduce (o destraduce) toda la página -----
+    function traducirPagina() {
+
+      // a) Textos: todos los elementos que tengan el atributo data-en
+      var textosPagina = document.querySelectorAll("[data-en]");
+      for (var i = 0; i < textosPagina.length; i++) {
+        var el = textosPagina[i];
+        if (enIngles) {
+          // La primera vez, guardamos el texto en español dentro de data-es
+          if (el.getAttribute("data-es") === null) {
+            el.setAttribute("data-es", el.textContent);
+          }
+          el.textContent = el.getAttribute("data-en");      // ponemos el inglés
+        } else {
+          el.textContent = el.getAttribute("data-es");      // recuperamos el español
+        }
+      }
+
+      // b) Idioma de la página y título de la pestaña
+      if (enIngles) {
+        document.documentElement.lang = "en";
+        document.title = "Antonio Cuevas | Personal Information";
+      } else {
+        document.documentElement.lang = "es";
+        document.title = tituloEspanol;
+      }
+    }
+
+    // ----- 7. Función que pone bien el texto de los dos botones de arriba -----
+    function actualizarBotones() {
+      // Elegimos el juego de textos según el idioma actual
+      var t = textos.es;
+      if (enIngles) {
+        t = textos.en;
+      }
+
+      // El botón de tema ofrece cambiar "al otro" modo
+      var etiquetaTema = t.aClaro;
+      if (modoClaro) {
+        etiquetaTema = t.aOscuro;
+      }
+      botonTema.setAttribute("title", etiquetaTema);
+      botonTema.setAttribute("aria-label", etiquetaTema);
+
+      // El botón de idioma muestra las letras del idioma AL QUE cambiarás
+      botonIdioma.setAttribute("title", t.aIdioma);
+      botonIdioma.setAttribute("aria-label", t.aIdioma);
+      botonIdioma.textContent = t.letras;
+    }
+  </script>
+
+</body>
+</html>
