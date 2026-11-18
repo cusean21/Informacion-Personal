@@ -1,0 +1,37 @@
+/* =====================================================
+   ESTILO CLARO (segundo estilo de la web)
+
+   Idea: no copiamos todo el CSS otra vez.
+   1. Con @import cargamos primero el estilo oscuro (estilo.css).
+   2. Después SOLO cambiamos los colores que queremos.
+   Como lo de abajo pisa a lo de arriba, el tema claro gana.
+   ===================================================== */
+
+/* @import tiene que ser SIEMPRE lo primero del archivo */
+@import url("estilo.css");
+
+/* ----- Paso 2a: cambiamos las variables de color -----
+   Como todo el diseño usa var(--algo), al cambiar estos
+   valores cambia toda la web de golpe. */
+:root {
+  --fondo: #f4f5fa;        /* fondo de la página: casi blanco */
+  --superficie: #ffffff;   /* ventanas, aside y pie: blanco */
+  --texto: #1d1f2e;        /* texto oscuro */
+  --apagado: #5a5e73;      /* texto secundario: gris oscuro */
+  --oro: #e63946;          /* color de detalles: rojo un poco más oscuro */
+  --oro-claro: #b3202d;    /* al pasar el ratón: rojo más oscuro todavía */
+  --borde: #dcdfe9;        /* líneas finas: gris claro */
+}
+
+/* ----- Paso 2b: cosas que en estilo.css NO usan variables ----- */
+
+/* El menú tenía un negro semitransparente escrito a mano (no una variable),
+   así que hay que cambiarlo aquí a blanco semitransparente */
+.cabecera {
+  background-color: rgba(244, 245, 250, 0.85);
+}
+
+/* Sombra suave para que las ventanas destaquen sobre el fondo claro */
+.ventana {
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.07);
+}
